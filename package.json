@@ -1,0 +1,22 @@
+{
+  "name": "genius-recaptcha-function",
+  "version": "1.0.0",
+  "description": "Recaptcha verification function for form submission",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/J-Krush/genius-recaptcha-function.git"
+  },
+  "author": "J-Krush",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/J-Krush/genius-recaptcha-function/issues"
+  },
+  "homepage": "https://github.com/J-Krush/genius-recaptcha-function#readme",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
