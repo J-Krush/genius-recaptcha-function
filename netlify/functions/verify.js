@@ -103,6 +103,7 @@ export const handler = async (event, context) => {
           formResponse: forwardData,
           threshold: scoreThreshold,
           details: verificationData,
+          success: true,
         }),
       };
     } else {
@@ -114,6 +115,7 @@ export const handler = async (event, context) => {
           error: "Low ReCAPTCHA score or verification failed",
           threshold: scoreThreshold,
           details: verificationData,
+          success: false,
         }),
       };
     }
