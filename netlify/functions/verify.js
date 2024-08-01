@@ -5,6 +5,8 @@ dotenv.config()
 
 // module.exports.handler = async function (event, context) {
 export const handler = async (event, context) => {
+    console.log('handler event:, ', event);
+    
   // Use environment variables for CORS origin and score threshold
   const mySiteUrl = process.env.MY_SITE_URL || "*"; // Fallback to '*' if not set
   const scoreThreshold = parseFloat(process.env.SCORE_THRESHOLD) || 0.5; // Default to 0.5 if not set
