@@ -74,6 +74,7 @@ export const handler = async (event, context) => {
 
     if (verificationData.success && verificationData.score >= scoreThreshold) {
       const formData = body.formData; // Extract form data from the request body
+      const formName = body.formName; // "MYG_Form"
       const endpointUrl = process.env.ENDPOINT_URL; // Endpoint URL for forwarding the data
 
       // Convert formData object to URL-encoded string
@@ -82,7 +83,10 @@ export const handler = async (event, context) => {
       // Forward the form data to the specified endpoint
       const forwardResponse = await fetch(endpointUrl, {
         method: "POST",
-        body: formBody,
+        body: {
+            formName,
+            ...formBody
+        },
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
@@ -103,7 +107,6 @@ export const handler = async (event, context) => {
           formResponse: forwardData,
           threshold: scoreThreshold,
           details: verificationData,
-          success: true,
         }),
       };
     } else {
@@ -115,7 +118,6 @@ export const handler = async (event, context) => {
           error: "Low ReCAPTCHA score or verification failed",
           threshold: scoreThreshold,
           details: verificationData,
-          success: false,
         }),
       };
     }
