@@ -7,7 +7,7 @@ export const handler = async (event, context) => {
 
   // Use environment variables for CORS origin and score threshold
   const mySiteUrl = process.env.MY_SITE_URL || "*"; // Fallback to '*' if not set
-  const scoreThreshold = parseFloat(process.env.SCORE_THRESHOLD) || 0.5; // Default to 0.5 if not set
+  const scoreThreshold = parseFloat(process.env.SCORE_THRESHOLD) || 0.3; // Default to 0.5 if not set
 
   // Define CORS headers for cross-origin requests
   const corsHeaders = {
@@ -78,15 +78,12 @@ export const handler = async (event, context) => {
       const endpointUrl = process.env.ENDPOINT_URL; // Endpoint URL for forwarding the data
 
       // Convert formData object to URL-encoded string
-      const formBody = new URLSearchParams(formData).toString();
+      const formBody = new URLSearchParams({ ...formData, formName }).toString();
 
       // Forward the form data to the specified endpoint
       const forwardResponse = await fetch(endpointUrl, {
         method: "POST",
-        body: {
-            formName,
-            ...formBody
-        },
+        body: formBody,
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
